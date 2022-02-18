@@ -1,47 +1,23 @@
+import styled from "../styles/Home.module.css";
 import Link from "next/link";
-import CustomLink from "../components/CustomLink";
+import { useState } from "react";
 
-export default function Home() {
+export default function Home({ count, setCount }) {
+  const [err, setErr] = useState(false);
+  if (err) {
+    throw new Error("chu bug le");
+  }
   return (
-    <div>
-      <h1>/index</h1>
-      <ul>
-        <li>
-          <Link href="/book">
-            <a>静态路由跳转：/book</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/my/book/one">
-            <a>静态路由跳转：/my/book/one</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/book/[id]" as="book/123">
-            <a>动态路由跳转：/book/123</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/book/one" passHref>
-            <CustomLink />
-          </Link>
-        </li>
-        <li>
-          <Link href={{ pathname: "/book", query: { year: "2020" } }}>
-            <a>url对象跳转：/book?year=2020</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/book" replace>
-            <a>replace to book</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/book" passHref>
-            <button>按钮跳转</button>
-          </Link>
-        </li>
-      </ul>
+    <div className={styled.container}>
+      <h1 className={styled.title}>
+        Welcome to <a href="https://nextjs.org">Next.js</a>
+      </h1>
+      <Link href="/book">
+        <a>go to book</a>
+      </Link>
+      <h1>{count}</h1>
+      <button onClick={() => setCount((c) => c + 1)}>click to add</button>
+      <button onClick={() => setErr(true)}>click to throw error</button>
     </div>
   );
 }
