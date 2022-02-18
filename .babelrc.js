@@ -1,14 +1,15 @@
 module.exports = {
-  "presets": [
+  presets: [
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "chrome": 67,
+        targets: {
+          chrome: 67,
         },
-        "useBuiltIns": "usage"
-      }
+        useBuiltIns: "usage",
+      },
     ],
-    "@babel/preset-react"
-  ]
-}
+    "@babel/preset-react",
+  ],
+  plugins: ["@babel/plugin-transform-runtime"],
+};
